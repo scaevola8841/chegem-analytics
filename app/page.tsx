@@ -2,6 +2,7 @@ import MonthlyChart from "@/app/components/MonthlyChart";
 import { DayOfWeekChart, HourlyChart } from "@/app/components/DayHourCharts";
 import { CheckDistributionChart, PlatformChart } from "@/app/components/DistributionCharts";
 import { CohortChart, TopUsersChart } from "@/app/components/CohortUsersCharts";
+import AnalyticsReport from "@/app/components/AnalyticsReport";
 import { metrics, topProducts } from "@/app/data/analytics";
 
 function fmt(n: number) {
@@ -184,6 +185,9 @@ export default function DashboardPage() {
             ))}
           </div>
         </div>
+
+        {/* Аналитический отчёт */}
+        <AnalyticsReport />
 
       </main>
 
