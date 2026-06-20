@@ -24,10 +24,20 @@ export default function MonthlyChart() {
           datasets: [
             {
               type: "bar" as const,
-              label: "Заказов",
-              data: monthlyData.map((d) => d.orders),
+              label: "Сайт",
+              data: monthlyData.map((d) => d.siteOrders),
               backgroundColor: "#3b82f6",
-              borderRadius: 4,
+              borderRadius: 3,
+              stack: "orders",
+              yAxisID: "y",
+            },
+            {
+              type: "bar" as const,
+              label: "Приложение",
+              data: monthlyData.map((d) => d.appOrders),
+              backgroundColor: "#93c5fd",
+              borderRadius: 3,
+              stack: "orders",
               yAxisID: "y",
             },
             {
@@ -48,8 +58,13 @@ export default function MonthlyChart() {
           maintainAspectRatio: false,
           plugins: { legend: { display: false } },
           scales: {
-            x: { grid: { display: false }, ticks: { font: { size: 11 } } },
-            y: { grid: { color: "#f3f4f6" }, position: "left", ticks: { stepSize: 20, font: { size: 11 } } },
+            x: { stacked: true, grid: { display: false }, ticks: { font: { size: 11 } } },
+            y: {
+              stacked: true,
+              grid: { color: "#f3f4f6" },
+              position: "left",
+              ticks: { stepSize: 100, font: { size: 11 } },
+            },
             y2: {
               grid: { display: false },
               position: "right",

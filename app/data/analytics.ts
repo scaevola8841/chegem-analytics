@@ -1,38 +1,69 @@
 export const metrics = {
-  totalOrders: 649,
-  totalRevenue: 4365650,
-  aov: 6727,
-  uniqueUsers: 517,
-  newUsers: 424,
-  returningUsers: 93,
-  ordersWithPromo: 282,
-  promoShare: 43.5,
-  totalDiscount: 150273,
-  belowMinimum: 98,
-  belowMinimumShare: 15.1,
-  retention90d: 15,
+  // Суммарно по двум каналам
+  totalOrders:   4968,
+  totalRevenue:  35119297,
+  aov:           7073,
+  uniqueUsers:   4604,
+
+  // Сайт (Битрикс)
+  siteOrders:    4319,
+  siteRevenue:   30753647,
+  siteAov:       7121,
+  siteUsers:     4087,
+  siteReturning: 148,
+  siteReturnRate: 3.6,
+  siteAvgOrders: 1.06,
+  siteLtv:       7525,
+  siteBelowMin:  496,
+  siteBelowMinPct: 11.5,
+
+  // Приложение (iOS + Android)
+  appOrders:    649,
+  appRevenue:   4365650,
+  appAov:       6727,
+  appUsers:     517,
+  appReturning: 93,
+  appReturnRate: 18,
+  appAvgOrders: 1.26,
+  appLtv:       8477,
+  appBelowMin:  98,
+  appBelowMinPct: 15.1,
+
+  // Метрики приложения (есть только в app-данных)
+  ordersWithPromo:    282,
+  promoShare:         43.5,
+  totalDiscount:      150273,
+  retention90d:       15,
   medianInterOrderDays: 23,
-  avgInterOrderDays: 52,
-  birthdayOrders: 70,
-  bonusOrders: 60,
+  avgInterOrderDays:  52,
 };
 
+// Помесячная динамика — оба канала
 export const monthlyData = [
-  { month: "Июн '25", orders: 18,  revenue: 110149, aov: 6119 },
-  { month: "Июл '25", orders: 38,  revenue: 227579, aov: 5989 },
-  { month: "Авг '25", orders: 56,  revenue: 282212, aov: 5040 },
-  { month: "Сен '25", orders: 74,  revenue: 427619, aov: 5779 },
-  { month: "Окт '25", orders: 78,  revenue: 438733, aov: 5625 },
-  { month: "Ноя '25", orders: 63,  revenue: 394392, aov: 6260 },
-  { month: "Дек '25", orders: 50,  revenue: 360256, aov: 7205 },
-  { month: "Янв '26", orders: 43,  revenue: 329890, aov: 7672 },
-  { month: "Фев '26", orders: 67,  revenue: 543580, aov: 8113 },
-  { month: "Мар '26", orders: 50,  revenue: 400030, aov: 8001 },
-  { month: "Апр '26", orders: 52,  revenue: 426060, aov: 8193 },
-  { month: "Май '26", orders: 45,  revenue: 308730, aov: 6861 },
-  { month: "Июн '26", orders: 15,  revenue: 116420, aov: 7761 },
+  { month: "Июн '25", appOrders: 18,  siteOrders: 351, aov: 5917 },
+  { month: "Июл '25", appOrders: 38,  siteOrders: 299, aov: 6450 },
+  { month: "Авг '25", appOrders: 56,  siteOrders: 266, aov: 6000 },
+  { month: "Сен '25", appOrders: 74,  siteOrders: 367, aov: 6422 },
+  { month: "Окт '25", appOrders: 78,  siteOrders: 369, aov: 6934 },
+  { month: "Ноя '25", appOrders: 63,  siteOrders: 352, aov: 6556 },
+  { month: "Дек '25", appOrders: 50,  siteOrders: 397, aov: 7074 },
+  { month: "Янв '26", appOrders: 43,  siteOrders: 306, aov: 7681 },
+  { month: "Фев '26", appOrders: 67,  siteOrders: 427, aov: 8429 },
+  { month: "Мар '26", appOrders: 50,  siteOrders: 479, aov: 8524 },
+  { month: "Апр '26", appOrders: 52,  siteOrders: 324, aov: 7184 },
+  { month: "Май '26", appOrders: 45,  siteOrders: 337, aov: 7246 },
+  { month: "Июн '26", appOrders: 15,  siteOrders: 45,  aov: 7072 },
 ];
 
+// Каналы — реальная разбивка с учётом сайта
+export const platforms = [
+  { name: "Сайт",            count: 4319, pct: 86.9 },
+  { name: "iOS (прил.)",     count: 372,  pct: 7.5  },
+  { name: "Android (прил.)", count: 270,  pct: 5.4  },
+  { name: "Web (прил.)",     count: 7,    pct: 0.1  },
+];
+
+// Поведенческие данные — только из приложения
 export const byDayOfWeek = [
   { day: "Пн", orders: 127, aov: 7458 },
   { day: "Вт", orders: 120, aov: 7796 },
@@ -66,25 +97,25 @@ export const byHour = [
 ];
 
 export const checkDistribution = [
-  { range: "до 3 500 ₽",    count: 98,  pct: 15.1 },
-  { range: "3 500–5 000 ₽", count: 159, pct: 24.5 },
-  { range: "5 000–7 500 ₽", count: 203, pct: 31.3 },
-  { range: "7 500–10 000 ₽",count: 91,  pct: 14.0 },
-  { range: "10 000–15 000 ₽",count: 67, pct: 10.3 },
-  { range: "15 000+ ₽",      count: 31, pct: 4.8  },
+  { range: "до 3 500 ₽",     count: 98,  pct: 15.1 },
+  { range: "3 500–5 000 ₽",  count: 159, pct: 24.5 },
+  { range: "5 000–7 500 ₽",  count: 203, pct: 31.3 },
+  { range: "7 500–10 000 ₽", count: 91,  pct: 14.0 },
+  { range: "10 000–15 000 ₽",count: 67,  pct: 10.3 },
+  { range: "15 000+ ₽",      count: 31,  pct: 4.8  },
 ];
 
 export const topProducts = [
-  { name: "Традиционный с мясом",    qty: 496 },
-  { name: "Жульен",                   qty: 210 },
-  { name: "Картофель и сыр",          qty: 168 },
-  { name: "Пирог с сыром",            qty: 156 },
-  { name: "Творог и малина",          qty: 148 },
-  { name: "Горбуша",                  qty: 123 },
-  { name: "Сыр и шпинат",             qty: 114 },
-  { name: "Княжеский",                qty: 112 },
-  { name: "Курица и сыр",             qty: 111 },
-  { name: "Морс чёрная смородина",    qty: 62  },
+  { name: "Традиционный с мясом",   qty: 496 },
+  { name: "Жульен",                  qty: 210 },
+  { name: "Картофель и сыр",         qty: 168 },
+  { name: "Пирог с сыром",           qty: 156 },
+  { name: "Творог и малина",         qty: 148 },
+  { name: "Горбуша",                 qty: 123 },
+  { name: "Сыр и шпинат",            qty: 114 },
+  { name: "Княжеский",               qty: 112 },
+  { name: "Курица и сыр",            qty: 111 },
+  { name: "Морс чёрная смородина",   qty: 62  },
 ];
 
 export const cohortRetention = [
@@ -100,19 +131,13 @@ export const cohortRetention = [
   { cohort: "Мар '26", size: 37, ret90: 11 },
 ];
 
-export const platforms = [
-  { name: "iOS",     count: 372, pct: 57.3 },
-  { name: "Android", count: 270, pct: 41.6 },
-  { name: "Web",     count: 7,   pct: 1.1  },
-];
-
 export const topUsers = [
-  { name: "Даниил",  ordersInSet: 21, lifetimeOrders: 28, ltv: 109202 },
-  { name: "Ольга В.", ordersInSet: 6,  lifetimeOrders: 6,  ltv: 94079  },
-  { name: "Регина",  ordersInSet: 4,  lifetimeOrders: 4,  ltv: 51592  },
-  { name: "Марина",  ordersInSet: 3,  lifetimeOrders: 3,  ltv: 39217  },
-  { name: "Анастасия",ordersInSet: 4, lifetimeOrders: 4,  ltv: 36820  },
-  { name: "Степан",  ordersInSet: 7,  lifetimeOrders: 7,  ltv: 32548  },
-  { name: "Олег",    ordersInSet: 3,  lifetimeOrders: 3,  ltv: 33248  },
-  { name: "Анара",   ordersInSet: 7,  lifetimeOrders: 7,  ltv: 28966  },
+  { name: "Даниил",    ordersInSet: 21, lifetimeOrders: 28, ltv: 109202 },
+  { name: "Ольга В.",  ordersInSet: 6,  lifetimeOrders: 6,  ltv: 94079  },
+  { name: "Регина",    ordersInSet: 4,  lifetimeOrders: 4,  ltv: 51592  },
+  { name: "Марина",    ordersInSet: 3,  lifetimeOrders: 3,  ltv: 39217  },
+  { name: "Анастасия", ordersInSet: 4,  lifetimeOrders: 4,  ltv: 36820  },
+  { name: "Степан",    ordersInSet: 7,  lifetimeOrders: 7,  ltv: 32548  },
+  { name: "Олег",      ordersInSet: 3,  lifetimeOrders: 3,  ltv: 33248  },
+  { name: "Анара",     ordersInSet: 7,  lifetimeOrders: 7,  ltv: 28966  },
 ];
