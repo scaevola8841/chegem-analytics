@@ -1,13 +1,8 @@
 import type { NextConfig } from "next";
 
-const isStaticExport = process.env.NEXT_OUTPUT === "export";
-
 const nextConfig: NextConfig = {
-  ...(isStaticExport && {
-    output: "export",
-    basePath: "/chegem-analytics",
-    trailingSlash: true,
-  }),
+  ...(process.env.NEXT_OUTPUT === "export" && { output: "export", trailingSlash: true }),
+  ...(process.env.NEXT_BASE_PATH && { basePath: process.env.NEXT_BASE_PATH }),
   images: { unoptimized: true },
 };
 
